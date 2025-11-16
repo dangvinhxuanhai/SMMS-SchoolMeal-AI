@@ -1,0 +1,216 @@
+﻿FoodId,FoodName,IsMainDish,SchoolId,IngredientNames,AllergenNames,TotalKcal
+1,Cơm gà xé,True,30530086-D3B5-4F39-9333-43061157E6A3,"Gạo trắng, Ức gà",,255.0
+2,Súp cà rốt,True,30530086-D3B5-4F39-9333-43061157E6A3,Cà rốt,,32.8
+3,Yogurt trái cây,False,30530086-D3B5-4F39-9333-43061157E6A3,Sữa chua,Milk,59.0
+1002,Cơm gà sốt mật ong,True,30530086-D3B5-4F39-9333-43061157E6A3,"Nạc ức gà, Gạo trắng, Cà rốt, Bông cải xanh, Dầu ô liu",,638.2
+1003,Bò xào rau củ,True,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt bò thăn, Gạo trắng, Cà rốt, Bông cải xanh, Dầu ô liu",,679.8
+1004,Cá hồi áp chảo sốt chanh,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cá hồi phi lê, Gạo trắng, Bông cải xanh, Dầu ô liu",,608.4
+1005,Đậu hũ kho nấm rau củ,True,30530086-D3B5-4F39-9333-43061157E6A3,"Đậu hũ trắng, Gạo trắng, Cà rốt, Bông cải xanh, Dầu ô liu",,484.92
+1006,Mì Ý sốt thịt băm,True,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt bò thăn, Mì spaghetti, Cà chua, Dầu ô liu",,556.9
+1007,Trứng cuộn rau củ,True,30530086-D3B5-4F39-9333-43061157E6A3,"Trứng gà, Gạo trắng, Cà rốt, Bông cải xanh",,475.5
+1008,Salad rau củ trộn dầu ô liu,False,30530086-D3B5-4F39-9333-43061157E6A3,"Bông cải xanh, Cà chua, Dưa leo, Dầu ô liu",,71.4
+1009,Salad trái cây,False,30530086-D3B5-4F39-9333-43061157E6A3,"Sữa chua không đường, Táo, Nho",,88.3
+1010,Canh cà rốt khoai tây,False,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Cà rốt",,81.4
+1011,Súp bí đỏ (giả lập bằng khoai tây + cà rốt),False,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Cà rốt, Bơ lạt",,108.55
+1012,Sữa chua trái cây,False,30530086-D3B5-4F39-9333-43061157E6A3,"Sữa chua không đường, Táo, Nho",,88.7
+1013,Khoai tây nghiền bơ,False,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Bơ lạt",,158.7
+1014,Phở Bò,True,30530086-D3B5-4F39-9333-43061157E6A3,"Bánh phở, Thịt bò, Xương bò, Hồi, Quế, Thảo quả, Gừng, Hành tây",,1508.0
+1015,Phở Gà,True,30530086-D3B5-4F39-9333-43061157E6A3,"Bánh phở, Gừng, Hành tây, Thịt gà ta, Xương gà, Lá chanh",,679.0
+1016,Bún Bò Huế,True,30530086-D3B5-4F39-9333-43061157E6A3,"Bún, Bắp bò, Giò heo, Mắm ruốc, Sả, Ớt, Huyết",,888.0
+1017,Bún Riêu Cua,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà chua, Bún, Riêu cua đồng, Đậu phụ rán, Mắm tôm, Rau sống",,445.0
+1018,Bún Chả Hà Nội,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà rốt, Bún, Ớt, Thịt ba chỉ, Thịt nạc vai, Nước mắm, Đường, Tỏi, Đu đủ",,1518.0
+1019,Bún Mắm,True,30530086-D3B5-4F39-9333-43061157E6A3,"Bún, Sả, Mắm cá, Tôm, Mực, Cá lóc, Heo quay, Cà tím","Hải sản, Hải sản",888.0
+1020,Bún Đậu Mắm Tôm,True,30530086-D3B5-4F39-9333-43061157E6A3,"Mắm tôm, Đường, Bún lá, Đậu phụ, Chả cốm, Thịt chân giò luộc, Tắc (quất)",,1044.0
+1021,Mì Quảng,True,30530086-D3B5-4F39-9333-43061157E6A3,"Tôm, Mì sợi vàng, Thịt heo, Trứng cút, Lạc rang, Bánh đa nướng","Hải sản, Peanut",1551.0
+1022,Cao Lầu,True,30530086-D3B5-4F39-9333-43061157E6A3,"Rau sống, Mì cao lầu, Thịt xá xíu, Da heo chiên giòn",,979.0
+1023,Hủ Tiếu Nam Vang,True,30530086-D3B5-4F39-9333-43061157E6A3,"Tôm, Trứng cút, Hủ tiếu, Thịt băm, Gan heo, Tim heo, Cần tây, Hẹ",Hải sản,985.0
+1024,Cơm Tấm,True,30530086-D3B5-4F39-9333-43061157E6A3,"Gạo tấm, Sườn cốt lết, Bì (da heo), Chả trứng, Trứng ốp la, Nước mắm chua ngọt",,1204.0
+1025,Cơm Gà Hội An,True,30530086-D3B5-4F39-9333-43061157E6A3,"Hành tây, Thịt gà ta, Đu đủ, Gạo, Nghệ, Rau răm, Nước mắm gừng",,901.0
+1026,Cơm Cháy,False,30530086-D3B5-4F39-9333-43061157E6A3,"Cơm cháy, Chà bông (ruốc), Mỡ hành, Nước mắm cay ngọt",,1596.0
+1027,Cơm Rang Dương Châu,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà rốt, Tôm, Cơm trắng, Lạp xưởng, Trứng, Đậu Hà Lan, Chả lụa","Hải sản, Trứng",1216.0
+1028,Cơm Hến,True,30530086-D3B5-4F39-9333-43061157E6A3,"Mắm ruốc, Lạc rang, Cơm trắng, Hến xào, Tóp mỡ, Khế chua, Hoa chuối",Peanut,1430.0
+1029,Cơm Lam,True,30530086-D3B5-4F39-9333-43061157E6A3,"Gạo nếp, Ống tre (nứa)",,97.0
+1030,Xôi Xéo,True,30530086-D3B5-4F39-9333-43061157E6A3,"Gạo nếp, Đậu xanh, Hành phi, Mỡ gà",,1682.0
+1031,Xôi Gà,True,30530086-D3B5-4F39-9333-43061157E6A3,"Mỡ hành, Gạo nếp, Hành phi, Thịt gà",,1716.0
+1032,Cơm Gà Xối Mỡ,True,30530086-D3B5-4F39-9333-43061157E6A3,"Dưa leo, Cơm trắng, Đùi gà chiên giòn, Xì dầu",,479.0
+1033,Cơm Chiên Hải Sản,True,30530086-D3B5-4F39-9333-43061157E6A3,"Tôm, Mực, Cơm trắng, Trứng, Rau củ (đậu, bắp, cà rốt)","Hải sản, Hải sản, Trứng",524.0
+1034,Thịt Kho Trứng (Kho Tàu),True,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt ba chỉ, Nước mắm, Trứng, Nước dừa, Nước màu",Trứng,1020.0
+1035,Cá Kho Tộ,True,30530086-D3B5-4F39-9333-43061157E6A3,"Ớt, Nước mắm, Cá lóc, Nước màu, Riềng, Tiêu",,809.0
+1036,Sườn Xào Chua Ngọt,True,30530086-D3B5-4F39-9333-43061157E6A3,"Hành tây, Đường, Tỏi, Sườn non, Ớt chuông, Giấm, Tương cà",,965.0
+1037,Gà Kho Gừng,True,30530086-D3B5-4F39-9333-43061157E6A3,"Gừng, Ớt, Nước mắm, Thịt gà, Tiêu",,650.0
+1038,Bò Kho,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà rốt, Hồi, Quế, Gừng, Bắp bò, Sả, Bột cà ri, Nước cốt dừa",,1523.0
+1039,Vịt Kho Gừng,True,30530086-D3B5-4F39-9333-43061157E6A3,"Gừng, Nước mắm, Đường, Thịt vịt, Rượu trắng",,1075.0
+1040,Mực Rim Nước Mắm,True,30530086-D3B5-4F39-9333-43061157E6A3,"Ớt, Nước mắm, Đường, Tỏi, Mực",Hải sản,708.0
+1041,Cá Thu Sốt Cà,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà chua, Tỏi, Cá thu, Hành lá, Thì là",,447.0
+1042,Tôm Rim Thịt Ba Chỉ,True,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt ba chỉ, Nước mắm, Đường, Tôm, Hành lá",Hải sản,1076.0
+1043,Đậu Hũ Nhồi Thịt Sốt Cà,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà chua, Đậu phụ, Thịt băm, Mộc nhĩ, Nấm hương",,416.0
+1044,Canh Chua Cá Lóc,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà chua, Cá lóc, Giá đỗ, Bạc hà (dọc mùng), Me, Đậu bắp, Rau thơm (ngò gai, ngò om)",,454.0
+1045,Canh Rau Ngót Nấu Tôm/Thịt Băm,True,30530086-D3B5-4F39-9333-43061157E6A3,"Tôm, Thịt băm, Rau ngót",Hải sản,397.0
+1046,Canh Khổ Qua Nhồi Thịt,True,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt băm, Mộc nhĩ, Nấm hương, Khổ qua (mướp đắng)",,339.0
+1047,Canh Bí Đỏ Nấu Tôm,True,30530086-D3B5-4F39-9333-43061157E6A3,"Tôm, Hành lá, Bí đỏ",Hải sản,157.0
+1048,Canh Sườn Rau Củ,True,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Cà rốt, Sườn non, Su hào",,397.0
+1049,Canh Cải Ngọt Thịt Băm,True,30530086-D3B5-4F39-9333-43061157E6A3,"Gừng, Thịt băm, Cải ngọt",,365.0
+1050,Canh Măng Chua (cá/sườn),True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà chua, Sườn non, Hành lá, Thì là, Măng chua, Cá (diêu hồng/lăng)",,458.0
+1051,Canh Mướp Đắng (Khổ Qua) Thác Lác,True,30530086-D3B5-4F39-9333-43061157E6A3,"Khổ qua (mướp đắng), Chả cá thác lác",,102.0
+1052,Canh Rau Má Thịt Băm,True,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt băm, Rau má",,300.0
+1053,Canh Atiso Hầm Giò Heo,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà rốt, Giò heo, Bông atiso",,348.0
+1054,Rau Muống Xào Tỏi,True,30530086-D3B5-4F39-9333-43061157E6A3,"Nước mắm, Tỏi, Rau muống",,208.0
+1055,Bò Xào Lúc Lắc,True,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt bò, Hành tây, Tỏi, Ớt chuông, Bơ",,1182.0
+1056,Mướp Xào Lòng Gà,True,30530086-D3B5-4F39-9333-43061157E6A3,"Hành lá, Giá đỗ, Mướp hương, Lòng gà",,207.0
+1057,Lươn Xào Sả Ớt,True,30530086-D3B5-4F39-9333-43061157E6A3,"Sả, Ớt, Nghệ, Thịt lươn",,680.0
+1058,Mực Xào Chua Ngọt,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà chua, Dưa leo, Hành tây, Mực, Cần tây, Dứa (thơm)",Hải sản,232.0
+1059,Bò Xào Cần Tỏi,True,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt bò, Hành tây, Cần tây, Tỏi tây",,367.0
+1060,Su Su Xào Tỏi (hoặc xào trứng),True,30530086-D3B5-4F39-9333-43061157E6A3,"Tỏi, Trứng, Su su",Trứng,311.0
+1061,Đậu Que Xào Thịt Bò,True,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt bò, Tỏi, Đậu que (cô ve)",,430.0
+1062,Giá Đỗ Xào Tim Cật,True,30530086-D3B5-4F39-9333-43061157E6A3,"Tỏi, Tim heo, Hẹ, Giá đỗ, Cật heo",,487.0
+1063,Cải Ngọt Xào Dầu Hào,True,30530086-D3B5-4F39-9333-43061157E6A3,"Tỏi, Cải ngọt, Dầu hào",,222.0
+1064,Bánh Xèo,True,30530086-D3B5-4F39-9333-43061157E6A3,"Rau sống, Thịt ba chỉ, Nước mắm, Tôm, Nước cốt dừa, Giá đỗ, Bột gạo, Bột nghệ",Hải sản,1618.0
+1065,Bánh Khọt,True,30530086-D3B5-4F39-9333-43061157E6A3,"Rau sống, Nước mắm, Tôm, Mỡ hành, Bột gạo, Bột nghệ",Hải sản,1640.0
+1066,Nem Rán (Chả Giò),True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà rốt, Thịt băm, Trứng, Mộc nhĩ, Nấm hương, Su hào, Bánh tráng (vỏ ram), Miến",Trứng,1034.0
+1067,Cánh Gà Chiên Nước Mắm,True,30530086-D3B5-4F39-9333-43061157E6A3,"Nước mắm, Đường, Tỏi, Cánh gà, Bột chiên giòn",,1129.0
+1068,Đậu Hũ Chiên Sả Ớt,True,30530086-D3B5-4F39-9333-43061157E6A3,"Sả, Ớt, Đậu phụ",,215.0
+1069,Cá Diêu Hồng Chiên Xù,True,30530086-D3B5-4F39-9333-43061157E6A3,"Nước mắm gừng, Bột chiên giòn, Cá diêu hồng",Cá,511.0
+1070,Tôm Chiên Bột,True,30530086-D3B5-4F39-9333-43061157E6A3,"Tôm, Trứng, Bột chiên giòn","Hải sản, Trứng",592.0
+1071,Chả Cá Lã Vọng,True,30530086-D3B5-4F39-9333-43061157E6A3,"Mắm tôm, Riềng, Hành lá, Thì là, Bột nghệ, Cá lăng, Mẻ",Cá,682.0
+1072,Trứng Chiên Thịt Băm,True,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt băm, Trứng, Hành lá",Trứng,438.0
+1073,Chả Cốm,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cốm, Giò sống, Mỡ",,1160.0
+1074,Bò Lá Lốt,True,30530086-D3B5-4F39-9333-43061157E6A3,"Bún, Sả, Tỏi, Bánh tráng (vỏ ram), Mỡ, Thịt bò băm, Lá lốt, Mắm nêm",,1778.0
+1075,Nem Nướng Ninh Hòa,True,30530086-D3B5-4F39-9333-43061157E6A3,"Rau sống, Thịt băm, Bì (da heo), Bánh tráng (vỏ ram), Mỡ",,1788.0
+1076,Gà Nướng Mật Ong,True,30530086-D3B5-4F39-9333-43061157E6A3,"Sả, Tỏi, Thịt gà, Mật ong, Ngũ vị hương",,1141.0
+1077,Sườn Nướng (cho Cơm Tấm),True,30530086-D3B5-4F39-9333-43061157E6A3,"Sả, Nước mắm, Tỏi, Sườn cốt lết, Mật ong, Sữa đặc",Milk,1144.0
+1078,Vịt Quay Lá Mác Mật,True,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt vịt, Lá mác mật, Gia vị",,387.0
+1079,Cá Lóc Nướng Trui,True,30530086-D3B5-4F39-9333-43061157E6A3,"Bún, Sả, Rau sống, Cá lóc, Bánh tráng (vỏ ram), Mắm nêm",,551.0
+1080,Lợn Cắp Nách (quay/nướng),True,30530086-D3B5-4F39-9333-43061157E6A3,"Lợn (nhỏ), Gia vị Tây Bắc",,542.0
+1081,Nem Lụi,True,30530086-D3B5-4F39-9333-43061157E6A3,"Sả, Thịt băm, Bánh tráng (vỏ ram), Mỡ",,1412.0
+1082,Hàu Nướng Mỡ Hành,True,30530086-D3B5-4F39-9333-43061157E6A3,"Lạc rang, Mỡ hành, Hàu","Peanut, Hải sản",1448.0
+1083,Mực Nướng Sa Tế,True,30530086-D3B5-4F39-9333-43061157E6A3,"Sả, Tỏi, Mực, Sa tế, Dầu điều",Hải sản,1724.0
+1084,Gỏi Cuốn,True,30530086-D3B5-4F39-9333-43061157E6A3,"Bún, Rau sống, Thịt ba chỉ, Tôm, Hẹ, Bánh tráng (vỏ ram)",Hải sản,942.0
+1085,Bò Bía,True,30530086-D3B5-4F39-9333-43061157E6A3,"Rau sống, Lạp xưởng, Trứng, Bánh tráng (vỏ ram), Củ sắn (củ đậu), Tôm khô",Trứng,1191.0
+1086,Gỏi Ngó Sen Tôm Thịt,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà rốt, Thịt ba chỉ, Tôm, Lạc rang, Nước mắm chua ngọt, Ngó sen","Hải sản, Peanut",1369.0
+1087,Nộm Hoa Chuối,True,30530086-D3B5-4F39-9333-43061157E6A3,"Rau sống, Lạc rang, Hoa chuối, Thịt gà, Giá đỗ, Tai lợn, Chanh",Peanut,1077.0
+1088,Gỏi Xoài Xanh (Tôm/Khô Bò),True,30530086-D3B5-4F39-9333-43061157E6A3,"Tôm, Lạc rang, Nước mắm chua ngọt, Rau răm, Xoài xanh, Khô bò","Hải sản, Peanut",1126.0
+1089,Gỏi Cá Trích,True,30530086-D3B5-4F39-9333-43061157E6A3,"Hành tây, Lạc rang, Cá trích, Dừa nạo","Peanut, Cá",1119.0
+1090,Nộm Sứa,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà rốt, Dưa leo, Rau sống, Lạc rang, Xoài xanh, Sứa",Peanut,739.0
+1091,Phở Cuốn,True,30530086-D3B5-4F39-9333-43061157E6A3,"Bánh phở, Thịt bò, Rau sống, Nước mắm chua ngọt, Xà lách",,490.0
+1092,Gỏi Gà Xé Phay,True,30530086-D3B5-4F39-9333-43061157E6A3,"Hành tây, Ớt, Lạc rang, Rau răm, Thịt gà, Chanh",Peanut,945.0
+1093,Bì Cuốn,True,30530086-D3B5-4F39-9333-43061157E6A3,"Rau sống, Bì (da heo), Nước mắm chua ngọt, Bánh tráng (vỏ ram)",,695.0
+1094,Bánh Chưng,False,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt ba chỉ, Gạo nếp, Đậu xanh, Tiêu, Lá dong",,971.0
+1095,Bánh Tét,False,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt ba chỉ, Gạo nếp, Đậu xanh, Lá chuối",,720.0
+1096,Bánh Bèo,False,30530086-D3B5-4F39-9333-43061157E6A3,"Mỡ hành, Tóp mỡ, Bột gạo, Tôm chấy",,1864.0
+1097,Bánh Bột Lọc,False,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt ba chỉ, Tôm, Lá chuối, Bột năng",Hải sản,969.0
+1098,Bánh Nậm,False,30530086-D3B5-4F39-9333-43061157E6A3,"Tôm, Thịt băm, Bột gạo, Lá chuối, Bột năng",Hải sản,1078.0
+1099,Bánh Giò,False,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt băm, Mộc nhĩ, Nấm hương, Bột gạo, Lá chuối, Bột năng",,1038.0
+1100,Bánh Cuốn,False,30530086-D3B5-4F39-9333-43061157E6A3,"Nước mắm, Thịt băm, Chả lụa, Hành phi, Mộc nhĩ, Bột gạo",,1409.0
+1101,Bánh Căn,False,30530086-D3B5-4F39-9333-43061157E6A3,"Trứng cút, Bột gạo",,522.0
+1102,Bánh Bao,False,30530086-D3B5-4F39-9333-43061157E6A3,"Trứng cút, Thịt băm, Lạp xưởng, Mộc nhĩ, Bột mì, Men nở",Gluten,1395.0
+1103,Bánh Gối (Bánh Xếp),False,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt băm, Trứng, Mộc nhĩ, Miến, Bột mì","Trứng, Gluten",1146.0
+1104,Chè Ba Màu,False,30530086-D3B5-4F39-9333-43061157E6A3,"Đậu xanh, Nước cốt dừa, Đậu đỏ, Sương sáo (thạch), Siro, Đá bào",,782.0
+1105,Chè Trôi Nước,False,30530086-D3B5-4F39-9333-43061157E6A3,"Gừng, Đậu xanh, Nước cốt dừa, Bột nếp, Đường thốt nốt",,1145.0
+1106,Chè Bưởi,False,30530086-D3B5-4F39-9333-43061157E6A3,"Đường, Đậu xanh, Nước cốt dừa, Bột năng, Vỏ bưởi",,1084.0
+1107,Chè Hạt Sen Long Nhãn,False,30530086-D3B5-4F39-9333-43061157E6A3,"Hạt sen, Nhãn lồng, Đường phèn",,536.0
+1108,Sữa Chua Nếp Cẩm,False,30530086-D3B5-4F39-9333-43061157E6A3,"Sữa chua, Nếp cẩm",Milk,159.0
+1109,Cháo Lòng,True,30530086-D3B5-4F39-9333-43061157E6A3,"Rau sống, Gạo, Nước hầm xương, Lòng lợn, Quẩy",,725.0
+1110,Ốc Luộc,False,30530086-D3B5-4F39-9333-43061157E6A3,"Lá chanh, Sả, Nước mắm gừng, Ốc",,294.0
+1111,Nem Chua Rán,False,30530086-D3B5-4F39-9333-43061157E6A3,"Nem chua, Bột chiên xù",,540.0
+1112,Khoai Lang Kén,False,30530086-D3B5-4F39-9333-43061157E6A3,"Nước cốt dừa, Bột năng, Khoai lang, Vừng (mè)",Mè,1241.0
+1113,Bánh Tráng Trộn,False,30530086-D3B5-4F39-9333-43061157E6A3,"Trứng cút, Lạc rang, Rau răm, Bánh tráng (vỏ ram), Sa tế, Xoài xanh, Khô bò, Sốt me",Peanut,1905.0
+1114,Pizza Margherita,True,30530086-D3B5-4F39-9333-43061157E6A3,"Dầu ô liu, Đế pizza, Sốt cà chua San Marzano, Phô mai mozzarella tươi, Lá húng quế (basil)",,1467.0
+1115,Spaghetti Carbonara,True,30530086-D3B5-4F39-9333-43061157E6A3,"Mì spaghetti, Má heo muối (guanciale), Lòng đỏ trứng, Phô mai Pecorino Romano, Tiêu đen",,1965.0
+1116,Lasagna Bolognese,True,30530086-D3B5-4F39-9333-43061157E6A3,"Lá lasagna, Sốt Bolognese, Sốt Béchamel, Phô mai Parmesan",,821.0
+1117,Risotto alla Milanese,True,30530086-D3B5-4F39-9333-43061157E6A3,"Bơ, Phô mai Parmesan, Gạo Arborio, Nghệ tây (saffron), Nước dùng bò",,1823.0
+1118,Bistecca alla Fiorentina,True,30530086-D3B5-4F39-9333-43061157E6A3,"Dầu ô liu, Tiêu, Thịt bò T-bone, Muối",,1424.0
+1119,Osso Buco,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà rốt, Hành tây, Cần tây, Bắp chân bê, Rượu vang trắng, Nước dùng",,338.0
+1120,Fettuccine Alfredo,True,30530086-D3B5-4F39-9333-43061157E6A3,"Bơ, Phô mai Parmesan, Mì Fettuccine",,1308.0
+1121,Salad Caprese,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà chua, Dầu ô liu, Phô mai mozzarella tươi, Lá húng quế (basil)",,1205.0
+1122,Arancini,True,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt băm, Trứng, Đậu Hà Lan, Bột chiên xù, Cơm Risotto",Trứng,1027.0
+1123,Pesto alla Genovese (Sốt Pesto),True,30530086-D3B5-4F39-9333-43061157E6A3,"Dầu ô liu, Tỏi, Lá húng quế (basil), Phô mai Pecorino Romano, Hạt thông",,2116.0
+1124,Bruschetta,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà chua, Dầu ô liu, Tỏi, Lá húng quế (basil), Bánh mì",,1339.0
+1125,Prosciutto e Melone,True,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt heo muối Prosciutto, Dưa lưới",,284.0
+1126,Cacio e Pepe,True,30530086-D3B5-4F39-9333-43061157E6A3,"Mì spaghetti, Phô mai Pecorino Romano, Tiêu đen",,988.0
+1127,Tiramisu,True,30530086-D3B5-4F39-9333-43061157E6A3,"Đường, Trứng, Bánh ladyfingers (Savoiardi), Cà phê espresso, Phô mai Mascarpone, Bột ca cao",Trứng,1593.0
+1128,Panna Cotta,True,30530086-D3B5-4F39-9333-43061157E6A3,"Đường, Kem tươi, Vani, Gelatin",,1350.0
+1129,Boeuf Bourguignon,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà rốt, Thịt bò, Hành tây, Rượu vang đỏ, Nấm, Thịt xông khói",,979.0
+1130,Coq au Vin,True,30530086-D3B5-4F39-9333-43061157E6A3,"Hành tây, Tỏi, Thịt gà, Rượu vang đỏ, Nấm, Thịt xông khói",,1076.0
+1131,Soupe à l'oignon,True,30530086-D3B5-4F39-9333-43061157E6A3,"Hành tây, Bơ, Nước dùng bò, Bánh mì baguette, Phô mai Gruyère",,1455.0
+1132,Ratatouille,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà chua, Hành tây, Tỏi, Cà tím, Ớt chuông, Bí ngòi, Thảo mộc Provence",,535.0
+1133,Confit de Canard,True,30530086-D3B5-4F39-9333-43061157E6A3,"Tỏi, Muối, Đùi vịt, Mỡ vịt, Húng tây (thyme)",,1487.0
+1134,Steak Frites,True,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Thịt bò",,337.0
+1135,Foie Gras,True,30530086-D3B5-4F39-9333-43061157E6A3,Gan ngỗng (vịt),,462.0
+1136,Escargots de Bourgogne,True,30530086-D3B5-4F39-9333-43061157E6A3,"Tỏi, Bơ, Ốc sên, Ngò tây",,992.0
+1137,Salad Niçoise,True,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Cà chua, Trứng, Cá ngừ, Đậu que, Ô liu Niçoise, Cá cơm (anchovies)",Trứng,736.0
+1138,Quiche Lorraine,True,30530086-D3B5-4F39-9333-43061157E6A3,"Trứng, Kem tươi, Thịt xông khói, Phô mai Gruyère, Vỏ bánh tart (mặn)",Trứng,1887.0
+1139,Crème Brûlée,True,30530086-D3B5-4F39-9333-43061157E6A3,"Đường, Lòng đỏ trứng, Kem tươi, Vani",,1337.0
+1140,Bánh Crêpe,True,30530086-D3B5-4F39-9333-43061157E6A3,"Trứng, Bơ, Bột mì, Sữa","Trứng, Gluten",1266.0
+1141,Bánh Macaron,True,30530086-D3B5-4F39-9333-43061157E6A3,"Bột hạnh nhân, Đường bột, Lòng trắng trứng, Kem (filling)",,1270.0
+1142,Croissant,True,30530086-D3B5-4F39-9333-43061157E6A3,"Bơ, Bột mì, Men nở",Gluten,1081.0
+1143,Bouillabaisse,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà chua, Tỏi, Tôm, Thì là, Nghệ tây (saffron), Cá và hải sản, Vẹm",Hải sản,825.0
+1144,Paella Valenciana,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà chua, Thịt gà, Nghệ tây (saffron), Đậu que, Gạo Bomba, Thịt thỏ, Đậu lima",,1236.0
+1145,Paella Hải Sản,True,30530086-D3B5-4F39-9333-43061157E6A3,"Tôm, Mực, Nghệ tây (saffron), Vẹm, Gạo Bomba, Nghêu","Hải sản, Hải sản",1011.0
+1146,Gazpacho,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà chua, Dầu ô liu, Tỏi, Ớt chuông, Bánh mì, Dưa chuột, Giấm sherry",,1375.0
+1147,Jamón Ibérico,True,30530086-D3B5-4F39-9333-43061157E6A3,"Muối, Đùi heo Iberia",,350.0
+1148,Tortilla Española,True,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Dầu ô liu, Hành tây, Trứng",Trứng,1154.0
+1149,Patatas Bravas,True,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Sốt cà chua cay",,127.0
+1150,Gambas al Ajillo,True,30530086-D3B5-4F39-9333-43061157E6A3,"Dầu ô liu, Tỏi, Tôm, Ngò tây, Ớt khô",Hải sản,1450.0
+1151,Croquetas,True,30530086-D3B5-4F39-9333-43061157E6A3,"Bột chiên xù, Sốt Béchamel, Thịt heo muối Prosciutto",,790.0
+1152,Pulpo a la Gallega,True,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Dầu ô liu, Bạch tuộc, Ớt bột paprika",,1335.0
+1153,Chorizo,True,30530086-D3B5-4F39-9333-43061157E6A3,"Ớt bột paprika, Xúc xích thịt heo",,737.0
+1154,Albondigas,True,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt băm, Trứng, Bánh mì",Trứng,671.0
+1155,Salmorejo,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà chua, Dầu ô liu, Tỏi, Bánh mì",,1316.0
+1156,Pisto,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà chua, Hành tây, Cà tím, Ớt chuông, Bí ngòi",,126.0
+1157,Fabada Asturiana,True,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt xông khói, Đậu trắng (fabes), Xúc xích chorizo, Xúc xích huyết (morcilla)",,1506.0
+1158,Churros,True,30530086-D3B5-4F39-9333-43061157E6A3,"Bột mì, Muối, Nước",Gluten,364.0
+1159,Moussaka,True,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Quế, Cà tím, Sốt cà chua San Marzano, Sốt Béchamel, Thịt cừu băm",,833.0
+1160,Souvlaki,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà chua, Hành tây, Thịt heo, Bánh pita, Sốt tzatziki",,655.0
+1161,Gyros,True,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Cà chua, Hành tây, Thịt heo, Bánh pita, Sốt tzatziki",,742.0
+1162,Salad Hy Lạp,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà chua, Dầu ô liu, Dưa chuột, Hành tây đỏ, Ô liu Kalamata, Phô mai Feta, Lá kinh giới (oregano)",,1601.0
+1163,Tzatziki (Sốt sữa chua),True,30530086-D3B5-4F39-9333-43061157E6A3,"Dầu ô liu, Tỏi, Thì là, Sữa chua Hy Lạp, Dưa chuột bào",,1150.0
+1164,Spanakopita (Bánh nướng rau chân vịt),True,30530086-D3B5-4F39-9333-43061157E6A3,"Hành tây, Thì là, Phô mai Feta, Bột phyllo, Rau chân vịt (bó xôi)",,669.0
+1165,Dolmades (Lá nho cuộn),True,30530086-D3B5-4F39-9333-43061157E6A3,"Hành tây, Gạo, Lá nho, Thảo mộc (bạc hà, thì là), Nước chanh",,335.0
+1166,Saganaki,True,30530086-D3B5-4F39-9333-43061157E6A3,"Chanh, Bột mì, Phô mai (Graviera/Kefalotyri)",Gluten,743.0
+1167,Kleftiko (Cừu nướng chậm),True,30530086-D3B5-4F39-9333-43061157E6A3,"Tỏi, Chanh, Lá kinh giới (oregano), Thịt cừu",,737.0
+1168,Fasolada (Súp đậu),True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà rốt, Dầu ô liu, Hành tây, Cần tây, Đậu trắng, Sốt cà chua",,1141.0
+1169,Gemista,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà chua, Gạo, Ớt chuông, Thảo mộc (bạc hà, thì là)",,217.0
+1170,Avgolemono (Súp gà chanh),True,30530086-D3B5-4F39-9333-43061157E6A3,"Gạo, Trứng, Nước chanh, Nước dùng gà",Trứng,317.0
+1171,Taramosalata (Sốt trứng cá),True,30530086-D3B5-4F39-9333-43061157E6A3,"Dầu ô liu, Bánh mì, Nước chanh, Trứng cá (tuyết/trích)",,1318.0
+1172,Loukoumades,True,30530086-D3B5-4F39-9333-43061157E6A3,"Quế, Bánh doughnut chiên, Siro mật ong, Hạt óc chó",,1605.0
+1173,Baklava,True,30530086-D3B5-4F39-9333-43061157E6A3,"Bơ, Bột phyllo, Hạt óc chó, Siro đường",,1970.0
+1174,Bratwurst (Xúc xích nướng),True,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt heo băm, Gia vị (nhục đậu khấu, gừng...)",,563.0
+1175,Sauerkraut (Bắp cải muối chua),True,30530086-D3B5-4F39-9333-43061157E6A3,Bắp cải muối chua,,19.0
+1176,Schnitzel,True,30530086-D3B5-4F39-9333-43061157E6A3,"Trứng, Bột mì, Bột chiên xù, Thịt bê","Trứng, Gluten",1069.0
+1177,Schweinshaxe (Giò heo nướng),True,30530086-D3B5-4F39-9333-43061157E6A3,"Bắp cải muối chua, Giò heo (lợn)",,279.0
+1178,Pretzel (Bánh xoắn),True,30530086-D3B5-4F39-9333-43061157E6A3,"Bột mì, Men, Muối hạt",Gluten,364.0
+1179,Currywurst,True,30530086-D3B5-4F39-9333-43061157E6A3,"Bột cà ri, Sốt cà chua, Xúc xích (Bratwurst)",,655.0
+1180,Käsespätzle,True,30530086-D3B5-4F39-9333-43061157E6A3,"Hành phi, Mì trứng (Spätzle), Phô mai (Emmental/Gruyère)",,1100.0
+1181,Sauerbraten (Thịt bò hầm chua),True,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt bò, Giấm, Rượu vang đỏ, Lá nguyệt quế",,666.0
+1182,Rouladen,True,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt bò, Hành tây, Thịt xông khói, Dưa chuột muối",,842.0
+1183,Kartoffelsalat (Salad khoai tây),True,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Hành tây, Giấm",,145.0
+1184,Eintopf (Súp hầm một nồi),True,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Cà rốt, Cần tây, Nước dùng, Thịt, Các loại đậu",,524.0
+1185,Labskaus,True,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Hành tây, Cá trích, Thịt bò muối (corned beef)",Cá,535.0
+1186,Apfelstrudel (Bánh táo cuộn),True,30530086-D3B5-4F39-9333-43061157E6A3,"Táo, Quế, Bột phyllo, Nho khô, Vụn bánh mì rang bơ",,1297.0
+1187,Black Forest Cake (Bánh Rừng Đen),True,30530086-D3B5-4F39-9333-43061157E6A3,"Kem tươi, Bánh sô cô la, Quả anh đào (cherry), Rượu anh đào (Kirsch)",,1000.0
+1188,Leberkäse,True,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt bò, Hành tây, Thịt heo",,532.0
+1189,Fish and Chips,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cá tuyết, Khoai tây chiên, Đậu nghiền (mushy peas), Sốt tartar",,784.0
+1190,Sunday Roast,True,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Thịt bò nướng, Bánh Yorkshire pudding, Rau củ nướng, Nước thịt (gravy)",,577.0
+1191,Full English Breakfast,True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà chua, Trứng, Bánh mì, Nấm, Thịt xông khói, Xúc xích, Đậu hầm (baked beans), Dồi huyết (black pudding)",Trứng,1644.0
+1192,Shepherd's Pie,True,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Cà rốt, Hành tây, Thịt cừu băm, Nước thịt (gravy)",,492.0
+1193,Cottage Pie,True,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Thịt bò băm",,347.0
+1194,Bangers and Mash,True,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Nước thịt (gravy), Xúc xích",,417.0
+1195,Steak and Kidney Pie,True,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt bò, Nước thịt (gravy), Cật (bò hoặc cừu), Vỏ bánh nướng (pie crust)",,865.0
+1196,Beef Wellington,True,30530086-D3B5-4F39-9333-43061157E6A3,"Thịt bò, Thịt heo muối Prosciutto, Nấm, Patê gan, Vỏ bánh ngàn lớp (puff pastry)",,1392.0
+1197,Cornish Pasty (Bánh gối),True,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Hành tây, Thịt bò băm, Vỏ bánh nướng (pie crust), Củ cải Thụy Điển (swede)",,875.0
+1198,Chicken Tikka Masala,True,30530086-D3B5-4F39-9333-43061157E6A3,"Gà nướng (tikka), Sốt cà chua kem (masala), Gia vị Ấn Độ",,600.0
+1199,Toad in the Hole,True,30530086-D3B5-4F39-9333-43061157E6A3,"Bánh Yorkshire pudding, Xúc xích",,510.0
+1200,Scotch Egg,True,30530086-D3B5-4F39-9333-43061157E6A3,"Trứng, Bột chiên xù, Thịt heo băm",Trứng,796.0
+1201,Eton Mess,True,30530086-D3B5-4F39-9333-43061157E6A3,"Kem tươi, Dâu tây, Bánh trứng đường (meringue)",,772.0
+1202,Sticky Toffee Pudding,True,30530086-D3B5-4F39-9333-43061157E6A3,"Bánh bông lan (chà là), Sốt kẹo bơ cứng (toffee sauce)",,750.0
+1203,Afternoon Tea (Tiệc trà chiều),True,30530086-D3B5-4F39-9333-43061157E6A3,"Trà, Bánh mì sandwich, Bánh nướng (scones), Kem đông (clotted cream), Mứt",,1447.0
+1204,Goulash (Hungary),True,30530086-D3B5-4F39-9333-43061157E6A3,"Cà chua, Thịt bò, Hành tây, Ớt bột paprika",,590.0
+1205,Pierogi (Ba Lan),True,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Vỏ bột, Phô mai",,689.0
+1206,Borscht (Ukraina/Nga),True,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Cà rốt, Thịt bò, Củ dền, Bắp cải, Kem chua",,644.0
+1207,Köttbullar (Thịt viên Thụy Điển),True,30530086-D3B5-4F39-9333-43061157E6A3,"Hành tây, Thịt bò băm, Sữa, Thịt heo băm, Vụn bánh mì, Mứt lingonberry",,1200.0
+1208,Moules-Frites (Bỉ),True,30530086-D3B5-4F39-9333-43061157E6A3,"Hành tây, Cần tây, Rượu vang trắng, Khoai tây chiên, Vẹm (trai)",,535.0
+1209,Waterzooi (Bỉ),True,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Cà rốt, Trứng, Thịt gà, Tỏi tây, Kem tươi",Trứng,911.0
+1210,Fondue (Thụy Sĩ),True,30530086-D3B5-4F39-9333-43061157E6A3,"Tỏi, Rượu vang trắng, Bánh mì, Phô mai (Emmental/Gruyère)",,875.0
+1211,Raclette (Thụy Sĩ/Pháp),True,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Dưa chuột muối, Phô mai Raclette",,458.0
+1212,Irish Stew (Hầm kiểu Ireland),True,30530086-D3B5-4F39-9333-43061157E6A3,"Khoai tây, Hành tây, Ngò tây, Thịt cừu",,457.0
+1213,Cevapi (Vùng Balkan),True,30530086-D3B5-4F39-9333-43061157E6A3,"Hành tây, Thịt bò băm, Bánh pita, Sốt kem ớt (ajvar)",,655.0
