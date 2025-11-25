@@ -80,11 +80,11 @@ class MenuRecommender:
         # 5. log session + results vào DB (rag.MenuRecommend*)
         #    ⚠ trước đây anh đang lỡ truyền query_text vào RequestJson, sửa lại thành req.json()
         request_json_str = req.json()
-        session_id = self._log_session_and_results(db, req.user_id, request_json_str, scored_main, scored_side)
+        # session_id = self._log_session_and_results(db, req.user_id, request_json_str, scored_main, scored_side)
 
         # 6. build response
         return RecommendResponse(
-            session_id=session_id,
+            # session_id=session_id,
             recommended_main=[
                 DishDto(
                     food_id=it["food_id"],
