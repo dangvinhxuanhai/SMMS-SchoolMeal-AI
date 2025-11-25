@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from app.tasks.indexing import build_index_for_school
 from app.tasks.graph_build import build_graph_for_school
 
-router = APIRouter(prefix="/api/v1/admin", tags=["admin"])
+router = APIRouter(tags=["admin"])
 
 
 class RebuildRequest(BaseModel):
