@@ -25,6 +25,6 @@ class DishDto(BaseModel):
     score: float
 
 class RecommendResponse(BaseModel):
-    # session_id: int         # ID log trong DB
     recommended_main: List[DishDto]
     recommended_side: List[DishDto]
+    message: Optional[str] = None

@@ -26,11 +26,19 @@ class RagIndex:
         self.metadata = metadata
         self.embedder = embedder
 
+    def _meta_path_for_school(school_id: str) -> str:
+        suffix = f"_{school_id}"
+        return settings.METADATA_PATH.replace(".csv", f"{suffix}.csv")
+
+
+    def _index_path_for_school(school_id: str) -> str:
+        suffix = f"_{school_id}"
+        return settings.FAISS_INDEX_PATH.replace(".faiss", f"{suffix}.faiss")
+
     @classmethod
     def load_for_school(cls, school_id: str) -> "RagIndex":
-        suffix = f"_{school_id}"
-        meta_path  = settings.METADATA_PATH.replace(".csv",  f"{suffix}.csv")
-        index_path = settings.FAISS_INDEX_PATH.replace(".faiss", f"{suffix}.faiss")
+        meta_path = cls._meta_path_for_school(school_id)
+        index_path = cls._index_path_for_school(school_id)
 
         if not os.path.exists(meta_path):
             raise RuntimeError(f"Metadata file not found for SchoolId={school_id}: {meta_path}")
@@ -41,6 +49,25 @@ class RagIndex:
         index = faiss.read_index(index_path)
         embedder = SentenceTransformer(settings.EMBEDDING_MODEL_NAME)
         return cls(index=index, metadata=metadata, embedder=embedder)
+
+
+    @classmethod
+    def try_load_for_school(cls, school_id: str) -> "RagIndex | None":
+        """
+        Trả về None nếu thiếu file index / metadata,
+        hoặc nếu load thất bại (không quăng exception ra ngoài).
+        """
+        meta_path = cls._meta_path_for_school(school_id)
+        index_path = cls._index_path_for_school(school_id)
+
+        if not (os.path.exists(meta_path) and os.path.exists(index_path)):
+            return None
+
+        try:
+            return cls.load_for_school(school_id)
+        except Exception:
+            # TODO: log lỗi chi tiết
+            return None
 
     def encode_query(self, text: str) -> np.ndarray:
         emb = self.embedder.encode([text], normalize_embeddings=True)

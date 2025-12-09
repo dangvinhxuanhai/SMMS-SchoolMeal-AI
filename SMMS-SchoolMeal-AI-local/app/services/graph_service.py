@@ -31,6 +31,17 @@ class IngredientGraph:
 
         return cls(G)
 
+    @classmethod
+    def try_load_for_school(cls, school_id: str) -> "IngredientGraph | None":
+        graph_path = _graph_path_for_school(school_id)
+        if not os.path.exists(graph_path):
+            return None
+
+        try:
+            return cls.load_for_school(school_id)
+        except Exception:
+            # TODO: log lỗi chi tiết
+            return None
     # ----------------- NGUYÊN LIỆU (đã có) -----------------
 
     def ingredient_overlap_score(self, food_id: int, ingredient_ids: List[int]) -> float:

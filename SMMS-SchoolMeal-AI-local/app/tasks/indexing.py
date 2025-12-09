@@ -6,6 +6,7 @@ import faiss
 from sentence_transformers import SentenceTransformer
 from sqlalchemy import create_engine, text
 from app.core.config import get_settings
+from app.tasks.graph_build import build_graph_for_school
 
 settings = get_settings()
 
@@ -13,6 +14,54 @@ settings = get_settings()
 def _get_engine():
     return create_engine(settings.SQLSERVER_CONN_STR)
 
+def get_pending_schools():
+    sql = """
+        SELECT SchoolId
+        FROM school.Schools
+        WHERE NeedRebuildAiIndex = 0 AND IsActive = 1
+    """
+    with engine.begin() as conn:
+        rows = conn.execute(text(sql)).fetchall()
+    return [str(r.SchoolId) for r in rows]
+
+def build_ai_for_pending_schools():
+    school_ids = get_pending_schools()
+    results = []
+
+    for sid in school_ids:
+        try:
+            n_food = build_index_for_school(sid)
+            n_nodes, n_edges = build_graph_for_school(sid)
+
+            # set NeedRebuildAiIndex = 1
+            with engine.begin() as conn:
+                conn.execute(
+                    text("""
+                        UPDATE school.Schools
+                        SET NeedRebuildAiIndex = 1
+                        WHERE SchoolId = :sid
+                    """),
+                    {"sid": sid},
+                )
+
+            results.append(
+                {
+                    "school_id": sid,
+                    "status": "ok",
+                    "indexed_food": n_food,
+                    "graph_nodes": n_nodes,
+                    "graph_edges": n_edges,
+                }
+            )
+        except Exception as ex:
+            results.append(
+                {
+                    "school_id": sid,
+                    "status": "error",
+                    "message": str(ex),
+                }
+            )
+    return results
 
 def build_index_for_school(school_id: str) -> int:
     """

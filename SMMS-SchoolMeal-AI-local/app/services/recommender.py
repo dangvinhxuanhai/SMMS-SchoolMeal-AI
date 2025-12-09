@@ -37,24 +37,35 @@ class MenuRecommender:
 
     # ----------------- INTERNAL: LOAD INDEX / GRAPH THEO SCHOOL -----------------
 
-    def _get_rag_for_school(self, school_id: UUID) -> RagIndex:
+    def _get_rag_for_school(self, school_id: UUID) -> RagIndex | None:
         key = str(school_id)
         if key not in self._rag_cache:
-            self._rag_cache[key] = RagIndex.load_for_school(key)
+            rag = RagIndex.try_load_for_school(key)
+            # cache luôn cả None để lần sau khỏi phải check file nữa
+            self._rag_cache[key] = rag  # rag có thể là None
         return self._rag_cache[key]
 
-    def _get_graph_for_school(self, school_id: UUID) -> IngredientGraph:
+    def _get_graph_for_school(self, school_id: UUID) -> IngredientGraph | None:
         key = str(school_id)
         if key not in self._graph_cache:
-            self._graph_cache[key] = IngredientGraph.load_for_school(key)
+            graph = IngredientGraph.try_load_for_school(key)
+            self._graph_cache[key] = graph
         return self._graph_cache[key]
 
     # ----------------- PUBLIC API -----------------
 
     def recommend(self, db: Session, req: RecommendRequest) -> RecommendResponse:
-        # 0. Lấy index & graph cho đúng trường
+        # 0. Lấy index & graph cho đúng trường (có thể None nếu chưa build)
         rag_index = self._get_rag_for_school(req.school_id)
         graph = self._get_graph_for_school(req.school_id)
+
+        # Nếu thiếu 1 trong 2 -> trả về rỗng + message, không crash
+        if rag_index is None or graph is None:
+            return RecommendResponse(
+                recommended_main=[],
+                recommended_side=[],
+                message="AI menu chưa được build (thiếu file FAISS/graph) cho trường này. Vui lòng nhờ admin bấm nút Gen file AI."
+            )
 
         # 1. build query text và retrieve candidates từ FAISS
         query_text = rag_index.build_query_text(
