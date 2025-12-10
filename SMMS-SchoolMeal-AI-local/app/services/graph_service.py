@@ -1,6 +1,6 @@
 # app/services/graph_service.py
 import os
-from typing import List, Set
+from typing import List, Set, Dict
 import pickle
 import networkx as nx
 from app.core.config import get_settings
@@ -92,26 +92,37 @@ class IngredientGraph:
 
         return allergen_ids
 
-    def allergen_conflict_penalty(self, food_id: int, avoid_allergen_ids: List[int]) -> float:
+    def allergen_conflict_penalty(
+        self,
+        food_id: int,
+        prevalence: Dict[int, float],  # {AllergenId: tỷ lệ HS bị dị ứng}
+    ) -> float:
         """
-        Tính penalty ∈ [0,1] cho món theo danh sách allergen cần tránh.
+        Tính penalty ∈ [0,1] cho món dựa trên tỷ lệ HS dị ứng từng allergen.
 
-        - 0.0  = không dính allergen nào trong avoid_allergen_ids
-        - 0.5  = dính 50% số allergen user muốn tránh
-        - 1.0  = dính toàn bộ allergen trong avoid_allergen_ids
+        - 0.0  = món không chứa allergen nào trong prevalence
+        - gần 1.0 = món chứa phần lớn các allergen có tỷ lệ dị ứng cao
         """
-        if not avoid_allergen_ids:
+        if not prevalence:
             return 0.0
 
-        avoid_set = set(avoid_allergen_ids)
         food_allergens = self.get_food_allergen_ids(food_id)
-
         if not food_allergens:
             return 0.0
 
-        hit_count = len(food_allergens.intersection(avoid_set))
-        if hit_count == 0:
+        food_allergens = set(food_allergens)
+
+        # tổng prevalence của tất cả allergen ta đang quan tâm (định chuẩn)
+        denom = sum(prevalence.values())
+        if denom <= 0:
             return 0.0
 
-        penalty = hit_count / len(avoid_set)
+        # tổng prevalence của các allergen mà món này chứa
+        num = sum(
+            prevalence[aid]
+            for aid in food_allergens
+            if aid in prevalence
+        )
+
+        penalty = num / denom
         return float(max(0.0, min(1.0, penalty)))

@@ -8,8 +8,70 @@ from app.models.schemas import RecommendRequest, RecommendResponse, DishDto
 from app.services.rag_index import RagIndex, Candidate
 from app.services.graph_service import IngredientGraph
 from app.services.ml_ranker import MlRanker
-from sqlalchemy import text
+from sqlalchemy import create_engine, text, bindparam
+from app.core.config import get_settings
 
+settings = get_settings()
+_engine = create_engine(settings.SQLSERVER_CONN_STR)
+
+def get_allergen_prevalence_for_school(
+    school_id: str,
+    allergen_ids: List[int],
+) -> Dict[int, float]:
+    """
+    Trả về dict {AllergenId: tỷ lệ học sinh trong trường bị dị ứng} (0–1).
+    Nếu không có học sinh hoặc allergen nào không có ai dính -> giá trị = 0.
+    """
+    if not allergen_ids:
+        return {}
+
+    # dùng expanding bindparam cho IN (...)
+    sql = text(
+        """
+        WITH ActiveStudents AS (
+            SELECT s.StudentId
+            FROM school.Students s
+            WHERE s.SchoolId = :school_id
+              AND s.IsActive = 1
+        ),
+        Affected AS (
+            SELECT sa.AllergenId,
+                   COUNT(DISTINCT sa.StudentId) AS AffectedCount
+            FROM nutrition.StudentAllergens sa
+            JOIN ActiveStudents s
+                 ON s.StudentId = sa.StudentId
+            WHERE sa.AllergenId IN :allergen_ids
+            GROUP BY sa.AllergenId
+        )
+        SELECT
+            a.AllergenId,
+            a.AffectedCount,
+            (SELECT COUNT(*) FROM ActiveStudents) AS TotalStudents
+        FROM Affected a;
+        """
+    ).bindparams(
+        bindparam("allergen_ids", expanding=True)
+    )
+
+    with _engine.begin() as conn:
+        rows = conn.execute(
+            sql,
+            {
+                "school_id": school_id,
+                # truyền list/tuple bình thường, SQLAlchemy sẽ expand thành IN (?, ?, ?)
+                "allergen_ids": list(allergen_ids),
+            },
+        ).fetchall()
+
+    prevalence: Dict[int, float] = {aid: 0.0 for aid in allergen_ids}
+    total_students = 0
+
+    for row in rows:
+        total_students = row.TotalStudents or total_students
+        if row.TotalStudents and row.TotalStudents > 0:
+            prevalence[row.AllergenId] = row.AffectedCount / row.TotalStudents
+
+    return prevalence
 
 class MenuRecommender:
     """
@@ -150,9 +212,16 @@ class MenuRecommender:
         is_main: bool
     ) -> List[dict]:
         scored: List[dict] = []
-
         feature_list = []
+
+        # danh sách allergen “có trong trường” mà handler đã truyền sang
         avoid_ids = req.avoid_allergen_ids or []
+
+        # tính prevalence 1 lần cho trường này
+        prevalence = get_allergen_prevalence_for_school(
+            str(req.school_id),
+            avoid_ids,
+        )
 
         for c in candidates:
             # nguyên liệu dùng cho scoring
@@ -161,8 +230,8 @@ class MenuRecommender:
             # score về nguyên liệu (graph)
             g_score = graph.ingredient_overlap_score(c.food_id, ing_ids)
 
-            # penalty dị ứng (sau cùng mới áp dụng)
-            allergen_penalty = graph.allergen_conflict_penalty(c.food_id, avoid_ids)
+            # penalty dị ứng dựa trên prevalence (0–1)
+            allergen_penalty = graph.allergen_conflict_penalty(c.food_id, prevalence)
 
             # feature cho ML (giữ 3 feature cũ)
             feature_list.append({
@@ -180,7 +249,8 @@ class MenuRecommender:
                 "graph_score": g_score,
                 "ml_score": 0.5,              # placeholder, update sau
                 "allergen_penalty": allergen_penalty,
-                "final_score": 0.0,            # update sau
+                # nếu bạn có sẵn allergen_ids trong Candidate thì giữ lại, không cũng được
+                "final_score": 0.0,
             })
 
         # ML scoring (nếu chưa có model thì trả 0.5 hết)
@@ -195,9 +265,9 @@ class MenuRecommender:
                 0.2 * scored[i]["ml_score"]
             )
 
-            penalty = scored[i]["allergen_penalty"]
+            penalty = scored[i]["allergen_penalty"]  # ∈ [0,1]
 
-            # 0 <= penalty <= 1 -> multiplier từ 1.0 -> 0.3
+            # 0 <= penalty <= 1 -> multiplier từ 1.0 -> 0.3 (hoặc chỉnh hệ số 0.7 tuỳ bạn)
             allergen_multiplier = 1.0 - 0.7 * penalty
             if allergen_multiplier < 0.0:
                 allergen_multiplier = 0.0
