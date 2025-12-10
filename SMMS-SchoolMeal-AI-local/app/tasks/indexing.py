@@ -7,14 +7,16 @@ from sentence_transformers import SentenceTransformer
 from sqlalchemy import create_engine, text
 from app.core.config import get_settings
 from app.tasks.graph_build import build_graph_for_school
+from app.tasks.train_model import train_ranking_model
 
 settings = get_settings()
-
 
 def _get_engine():
     return create_engine(settings.SQLSERVER_CONN_STR)
 
 def get_pending_schools():
+    engine = _get_engine()
+    
     sql = """
         SELECT SchoolId
         FROM school.Schools
@@ -61,6 +63,27 @@ def build_ai_for_pending_schools():
                     "message": str(ex),
                 }
             )
+    # Sau khi build index + graph xong, train ranking model 1 lần
+    try:
+        train_ranking_model()
+        results.append(
+            {
+                "school_id": None,
+                "status": "ok",
+                "stage": "train_model",
+                "message": "Trained ranking model successfully.",
+            }
+        )
+    except Exception as ex:  # noqa: BLE001
+        results.append(
+            {
+                "school_id": None,
+                "status": "error",
+                "stage": "train_model",
+                "message": str(ex),
+            }
+        )
+
     return results
 
 def build_index_for_school(school_id: str) -> int:
@@ -141,11 +164,29 @@ def build_index_for_school(school_id: str) -> int:
 
     df = pd.read_sql(text(sql), _get_engine(), params={"school_id": school_id})
 
+    # Chuẩn bị model + dimension
+    model = SentenceTransformer(settings.EMBEDDING_MODEL_NAME)
+    dim = model.get_sentence_embedding_dimension()
+
+    os.makedirs(settings.DATA_DIR, exist_ok=True)
+    suffix = f"_{school_id}"
+    meta_path = settings.METADATA_PATH.replace(".csv", f"{suffix}.csv")
+    index_path = settings.FAISS_INDEX_PATH.replace(".faiss", f"{suffix}.faiss")
+    emb_path = settings.EMBEDDINGS_PATH.replace(".npy", f"{suffix}.npy")
+
     if df.empty:
+        # ✅ Trường mới, chưa có món → tạo file rỗng nhưng hợp lệ
+        emb = np.zeros((0, dim), dtype="float32")
+        index = faiss.IndexFlatIP(dim)
+
+        df.to_csv(meta_path, index=False, encoding="utf-8-sig")
+        faiss.write_index(index, index_path)
+        np.save(emb_path, emb)
+
         return 0
 
     # build docs cho embedder
-    docs = []
+    docs: list[str] = []
     for _, row in df.iterrows():
         ing = row["IngredientNames"] or ""
         aller = row["AllergenNames"] or ""
@@ -156,17 +197,9 @@ def build_index_for_school(school_id: str) -> int:
         )
         docs.append(text_doc)
 
-    model = SentenceTransformer(settings.EMBEDDING_MODEL_NAME)
     emb = model.encode(docs, normalize_embeddings=True).astype("float32")
-
     index = faiss.IndexFlatIP(emb.shape[1])
     index.add(emb)
-
-    os.makedirs(settings.DATA_DIR, exist_ok=True)
-    suffix = f"_{school_id}"
-    meta_path = settings.METADATA_PATH.replace(".csv", f"{suffix}.csv")
-    index_path = settings.FAISS_INDEX_PATH.replace(".faiss", f"{suffix}.faiss")
-    emb_path = settings.EMBEDDINGS_PATH.replace(".npy", f"{suffix}.npy")
 
     df.to_csv(meta_path, index=False, encoding="utf-8-sig")
     faiss.write_index(index, index_path)

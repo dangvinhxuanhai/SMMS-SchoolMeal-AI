@@ -40,18 +40,19 @@ def build_graph_for_school(school_id: str) -> tuple[int, int]:
 
     G = nx.Graph()
 
-    for food_id, ing_id, allergen_id in rows:
-        f_node = f"Food:{food_id}"
-        i_node = f"Ingredient:{ing_id}"
+    if rows:
+        for food_id, ing_id, allergen_id in rows:
+            f_node = f"Food:{food_id}"
+            i_node = f"Ingredient:{ing_id}"
 
-        G.add_node(f_node)
-        G.add_node(i_node)
-        G.add_edge(f_node, i_node, kind="has_ingredient")
+            G.add_node(f_node)
+            G.add_node(i_node)
+            G.add_edge(f_node, i_node, kind="has_ingredient")
 
-        if allergen_id is not None:
-            a_node = f"Allergen:{allergen_id}"
-            G.add_node(a_node)
-            G.add_edge(i_node, a_node, kind="has_allergen")
+            if allergen_id is not None:
+                a_node = f"Allergen:{allergen_id}"
+                G.add_node(a_node)
+                G.add_edge(i_node, a_node, kind="has_allergen")
 
     os.makedirs(settings.DATA_DIR, exist_ok=True)
     graph_path = os.path.join(settings.DATA_DIR, f"ingredient_graph_{school_id}.gpickle")
