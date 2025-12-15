@@ -8,7 +8,7 @@ class Settings:
     # =========================
     # DATABASE (SQL SERVER)
     # =========================
-    DB_HOST: str = os.getenv("DB_HOST", "localhost")
+    DB_HOST: str = os.getenv("DB_HOST", "127.0.0.1")
     DB_PORT: str = os.getenv("DB_PORT", "1433")
     DB_NAME: str = os.getenv("DB_NAME", "EduMeal")
     DB_USER: str = os.getenv("DB_USER", "sa")
