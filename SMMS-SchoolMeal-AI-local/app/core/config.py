@@ -27,8 +27,9 @@ class Settings:
             f"mssql+pyodbc://{self.DB_USER}:{self.DB_PASSWORD}"
             f"@{self.DB_HOST},{self.DB_PORT}/{self.DB_NAME}"
             f"?driver={self.DB_DRIVER.replace(' ', '+')}"
-            f"&TrustServerCertificate=yes"
             f"&Encrypt=no"
+            f"&TrustServerCertificate=yes"
+            f"&Connection Timeout=30"
         )
 
     # =========================
