@@ -2,7 +2,7 @@
 import os
 from functools import lru_cache
 from pathlib import Path
-
+from urllib.parse import quote_plus  # <--- THÊM DÒNG NÀY
 
 class Settings:
     # =========================
@@ -23,10 +23,17 @@ class Settings:
         """
         SQLAlchemy + pyodbc connection string
         """
+        # Tự động mã hóa user và password (xử lý @, /, :, v.v.)
+        encoded_user = quote_plus(self.DB_USER)
+        encoded_password = quote_plus(self.DB_PASSWORD)
+        
+        # Mã hóa tên driver (thay khoảng trắng bằng +)
+        encoded_driver = quote_plus(self.DB_DRIVER)
+
         return (
-            f"mssql+pyodbc://{self.DB_USER}:{self.DB_PASSWORD}"
-            f"@{self.DB_HOST},{self.DB_PORT}/{self.DB_NAME}"
-            f"?driver={self.DB_DRIVER.replace(' ', '+')}"
+            f"mssql+pyodbc://{encoded_user}:{encoded_password}"
+            f"@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
+            f"?driver={encoded_driver}"
             f"&Encrypt=no"
             f"&TrustServerCertificate=yes"
             f"&Connection Timeout=30"
