@@ -15,7 +15,7 @@ class Settings:
     DB_PASSWORD: str = os.getenv("DB_PASSWORD", "YourStrong@Passw0rd1")
     DB_DRIVER: str = os.getenv(
         "DB_DRIVER",
-        "ODBC Driver 17 for SQL Server"
+        "ODBC Driver 18 for SQL Server"
     )
 
     @property
