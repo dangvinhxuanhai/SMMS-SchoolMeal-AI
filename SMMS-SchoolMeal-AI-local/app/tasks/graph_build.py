@@ -1,6 +1,7 @@
 # app/tasks/graph_build.py
 import os
 import pickle
+import traceback
 import networkx as nx
 from sqlalchemy import create_engine, text
 from app.core.config import get_settings
@@ -17,47 +18,73 @@ def build_graph_for_school(school_id: str) -> tuple[int, int]:
     Build graph Ingredient + Allergen cho 1 trường.
     Trả về (số node, số edge).
     """
-    engine = _get_engine()
+    print(f"\n[GRAPH] Start build_graph_for_school: {school_id}")
 
-    sql = """
-    SELECT
-        f.FoodId,
-        fi.IngredientId,
-        ai.AllergenId
-    FROM nutrition.FoodItems f
-    JOIN nutrition.FoodItemIngredients fi
-         ON fi.FoodId = f.FoodId
-    JOIN nutrition.Ingredients ing
-         ON ing.IngredientId = fi.IngredientId
-    LEFT JOIN nutrition.AllergeticIngredients ai
-         ON ai.IngredientId = ing.IngredientId
-    WHERE f.IsActive = 1
-      AND f.SchoolId = :school_id;
-    """
+    try:
+        engine = _get_engine()
 
-    with engine.connect() as conn:
-        rows = conn.execute(text(sql), {"school_id": school_id}).fetchall()
+        sql = """
+        SELECT
+            f.FoodId,
+            fi.IngredientId,
+            ai.AllergenId
+        FROM nutrition.FoodItems f
+        JOIN nutrition.FoodItemIngredients fi
+             ON fi.FoodId = f.FoodId
+        JOIN nutrition.Ingredients ing
+             ON ing.IngredientId = fi.IngredientId
+        LEFT JOIN nutrition.AllergeticIngredients ai
+             ON ai.IngredientId = ing.IngredientId
+        WHERE f.IsActive = 1
+          AND f.SchoolId = :school_id;
+        """
 
-    G = nx.Graph()
+        with engine.connect() as conn:
+            rows = conn.execute(
+                text(sql),
+                {"school_id": school_id}
+            ).fetchall()
 
-    if rows:
-        for food_id, ing_id, allergen_id in rows:
-            f_node = f"Food:{food_id}"
-            i_node = f"Ingredient:{ing_id}"
+        print(f"[GRAPH] Query rows = {len(rows)}")
 
-            G.add_node(f_node)
-            G.add_node(i_node)
-            G.add_edge(f_node, i_node, kind="has_ingredient")
+        G = nx.Graph()
 
-            if allergen_id is not None:
-                a_node = f"Allergen:{allergen_id}"
-                G.add_node(a_node)
-                G.add_edge(i_node, a_node, kind="has_allergen")
+        if rows:
+            for food_id, ing_id, allergen_id in rows:
+                f_node = f"Food:{food_id}"
+                i_node = f"Ingredient:{ing_id}"
 
-    os.makedirs(settings.DATA_DIR, exist_ok=True)
-    graph_path = os.path.join(settings.DATA_DIR, f"ingredient_graph_{school_id}.gpickle")
+                G.add_node(f_node)
+                G.add_node(i_node)
+                G.add_edge(f_node, i_node, kind="has_ingredient")
 
-    with open(graph_path, "wb") as f:
-        pickle.dump(G, f, protocol=pickle.HIGHEST_PROTOCOL)
+                if allergen_id is not None:
+                    a_node = f"Allergen:{allergen_id}"
+                    G.add_node(a_node)
+                    G.add_edge(i_node, a_node, kind="has_allergen")
 
-    return G.number_of_nodes(), G.number_of_edges()
+        os.makedirs(settings.DATA_DIR, exist_ok=True)
+        graph_path = os.path.join(
+            settings.DATA_DIR,
+            f"ingredient_graph_{school_id}.gpickle"
+        )
+
+        print(f"[GRAPH] Save graph to: {graph_path}")
+
+        with open(graph_path, "wb") as f:
+            pickle.dump(G, f, protocol=pickle.HIGHEST_PROTOCOL)
+
+        print(
+            f"[GRAPH] Graph CREATED for school {school_id} "
+            f"(nodes={G.number_of_nodes()}, edges={G.number_of_edges()})"
+        )
+
+        return G.number_of_nodes(), G.number_of_edges()
+
+    except Exception as ex:
+        print("\n❌ [GRAPH][FATAL ERROR] build_graph_for_school failed")
+        print("SchoolId:", school_id)
+        print("Exception:", ex)
+        print("Traceback:")
+        traceback.print_exc()
+        raise

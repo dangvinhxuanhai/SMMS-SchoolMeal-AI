@@ -2,14 +2,19 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from typing import List, Optional
+import os
 import numpy as np
 import pandas as pd
-import os
 import faiss
 from sentence_transformers import SentenceTransformer
+from pathlib import Path
+
 from app.core.config import get_settings
 
 settings = get_settings()
+_local_embedder = SentenceTransformer(
+    settings.EMBEDDING_MODEL_NAME
+)
 
 @dataclass
 class Candidate:
@@ -21,58 +26,51 @@ class Candidate:
     faiss_score: float
 
 class RagIndex:
-    def __init__(self, index: faiss.Index, metadata: pd.DataFrame, embedder: SentenceTransformer):
+    def __init__(self, index: faiss.Index, metadata: pd.DataFrame):
         self.index = index
         self.metadata = metadata
-        self.embedder = embedder
 
     def _meta_path_for_school(school_id: str) -> str:
-        suffix = f"_{school_id}"
-        return settings.METADATA_PATH.replace(".csv", f"{suffix}.csv")
+        base: Path = settings.METADATA_PATH
+        return str(base.with_name(f"{base.stem}_{school_id}{base.suffix}"))
 
 
     def _index_path_for_school(school_id: str) -> str:
-        suffix = f"_{school_id}"
-        return settings.FAISS_INDEX_PATH.replace(".faiss", f"{suffix}.faiss")
+        base: Path = settings.FAISS_INDEX_PATH
+        return str(base.with_name(f"{base.stem}_{school_id}{base.suffix}"))
 
     @classmethod
     def load_for_school(cls, school_id: str) -> "RagIndex":
         meta_path = cls._meta_path_for_school(school_id)
         index_path = cls._index_path_for_school(school_id)
 
-        if not os.path.exists(meta_path):
-            raise RuntimeError(f"Metadata file not found for SchoolId={school_id}: {meta_path}")
-        if not os.path.exists(index_path):
-            raise RuntimeError(f"FAISS index file not found for SchoolId={school_id}: {index_path}")
+        if not os.path.exists(meta_path) or not os.path.exists(index_path):
+            raise RuntimeError("Missing FAISS index or metadata")
 
         metadata = pd.read_csv(meta_path)
         index = faiss.read_index(index_path)
-        embedder = SentenceTransformer(settings.EMBEDDING_MODEL_NAME)
-        return cls(index=index, metadata=metadata, embedder=embedder)
-
+        return cls(index=index, metadata=metadata)
 
     @classmethod
-    def try_load_for_school(cls, school_id: str) -> "RagIndex | None":
-        """
-        Trả về None nếu thiếu file index / metadata,
-        hoặc nếu load thất bại (không quăng exception ra ngoài).
-        """
-        meta_path = cls._meta_path_for_school(school_id)
-        index_path = cls._index_path_for_school(school_id)
-
-        if not (os.path.exists(meta_path) and os.path.exists(index_path)):
-            return None
-
+    def try_load_for_school(cls, school_id: str):
         try:
             return cls.load_for_school(school_id)
         except Exception:
-            # TODO: log lỗi chi tiết
             return None
 
     def encode_query(self, text: str) -> np.ndarray:
-        emb = self.embedder.encode([text], normalize_embeddings=True)
-        return emb.astype("float32")
-    
+        # Encode query bằng local SentenceTransformer
+        emb = _local_embedder.encode(text)
+        # đảm bảo đúng dtype cho FAISS
+        emb = np.array(emb, dtype="float32")
+        # normalize L2 (giống FAISS IndexFlatIP)
+        norm = np.linalg.norm(emb)
+        if norm > 0:
+            emb = emb / norm
+
+        return emb.reshape(1, -1)
+
+
     def build_query_text(
         self,
         main_ingredient_ids: List[int],
@@ -89,18 +87,12 @@ class RagIndex:
             f"max main kcal {max_main_kcal}, max side kcal {max_side_kcal}."
         )
 
-    def search_candidates(
-        self,
-        query_text: str,
-        k: int = 200
-    ) -> List[Candidate]:
+    def search_candidates(self, query_text: str, k: int = 200) -> List[Candidate]:
         q_emb = self.encode_query(query_text)
         scores, idxs = self.index.search(q_emb, k)
-        idxs = idxs[0]
-        scores = scores[0]
 
         candidates: List[Candidate] = []
-        for i, s in zip(idxs, scores):
+        for i, s in zip(idxs[0], scores[0]):
             if i < 0:
                 continue
             row = self.metadata.iloc[i]

@@ -23,6 +23,7 @@ import joblib
 from app.core.config import get_settings
 from app.services.rag_index import RagIndex
 from app.services.graph_service import IngredientGraph
+from pathlib import Path
 
 settings = get_settings()
 
@@ -278,7 +279,8 @@ def train_ranking_model() -> None:
         return
 
     try:
-        emb_path = settings.EMBEDDINGS_PATH.replace(".npy", f"_{school_id}.npy")
+        base: Path = settings.EMBEDDINGS_PATH
+        emb_path = base.with_name(f"{base.stem}_{school_id}{base.suffix}")
         food_embeddings = np.load(emb_path)
     except Exception as ex:
         print(f"⚠ Không load được embeddings từ {emb_path}: {ex}")

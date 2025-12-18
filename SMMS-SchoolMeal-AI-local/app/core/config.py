@@ -3,21 +3,35 @@ import os
 from functools import lru_cache
 from pathlib import Path
 from urllib.parse import quote_plus  # <--- THÊM DÒNG NÀY
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Settings:
     # =========================
     # DATABASE (SQL SERVER)
     # =========================
-    DB_HOST: str = os.getenv("DB_HOST", "127.0.0.1")
-    DB_PORT: str = os.getenv("DB_PORT", "1433")
+    DB_HOST: str = os.getenv("DB_HOST", "XUANHAI") 
+    DB_PORT: str = os.getenv("DB_PORT", "1433") 
     DB_NAME: str = os.getenv("DB_NAME", "EduMeal")
-    DB_USER: str = os.getenv("DB_USER", "sa")
-    DB_PASSWORD: str = os.getenv("DB_PASSWORD", "YourStrong@Passw0rd1")
+    DB_USER: str = os.getenv("DB_USER", "haidang") 
+    DB_PASSWORD: str = os.getenv("DB_PASSWORD", "123")
     DB_DRIVER: str = os.getenv(
         "DB_DRIVER",
-        "ODBC Driver 18 for SQL Server"
+        "ODBC Driver 17 for SQL Server"
     )
-
+    OPENAI_API_KEY: str = os.getenv(
+        "OPENAI_API_KEY",
+        ""  # fallback an toàn
+    )
+    OPENAI_EMBEDDING_MODEL: str = os.getenv(
+        "OPENAI_EMBEDDING_MODEL",
+        "davinci-codex"
+    )
+    USE_OPENAI_EMBEDDINGS: bool = (
+        os.getenv("USE_OPENAI_EMBEDDINGS", "false").lower() == "true"
+    )
+    
     @property
     def SQLSERVER_CONN_STR(self) -> str:
         """
