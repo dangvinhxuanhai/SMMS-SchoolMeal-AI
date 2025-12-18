@@ -11,14 +11,14 @@ class Settings:
     # =========================
     # DATABASE (SQL SERVER)
     # =========================
-    DB_HOST: str = os.getenv("DB_HOST", "XUANHAI") 
-    DB_PORT: str = os.getenv("DB_PORT", "1433") 
+    DB_HOST: str = os.getenv("DB_HOST", "127.0.0.1")
+    DB_PORT: str = os.getenv("DB_PORT", "1433")
     DB_NAME: str = os.getenv("DB_NAME", "EduMeal")
-    DB_USER: str = os.getenv("DB_USER", "haidang") 
-    DB_PASSWORD: str = os.getenv("DB_PASSWORD", "123")
+    DB_USER: str = os.getenv("DB_USER", "sa")
+    DB_PASSWORD: str = os.getenv("DB_PASSWORD", "YourStrong@Passw0rd1")
     DB_DRIVER: str = os.getenv(
         "DB_DRIVER",
-        "ODBC Driver 17 for SQL Server"
+        "ODBC Driver 18 for SQL Server"
     )
     OPENAI_API_KEY: str = os.getenv(
         "OPENAI_API_KEY",
