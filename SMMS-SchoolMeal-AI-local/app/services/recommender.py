@@ -121,9 +121,9 @@ class MenuRecommender:
         print("=== [RECOMMEND] START ===")
         print("SchoolId:", req.school_id)
         print("UserId:", req.user_id)
-
-        rag_index = self._get_rag_for_school(req.school_id)
-        graph = self._get_graph_for_school(req.school_id)
+        school_id = req.school_id.upper()
+        rag_index = self._get_rag_for_school(school_id)
+        graph = self._get_graph_for_school(school_id)
 
         print("RAG loaded:", rag_index is not None)
         print("Graph loaded:", graph is not None)
