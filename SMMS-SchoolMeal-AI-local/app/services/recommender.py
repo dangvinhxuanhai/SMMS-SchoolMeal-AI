@@ -212,7 +212,7 @@ class MenuRecommender:
     ) -> Tuple[List[Candidate], List[Candidate]]:
         main_cands: List[Candidate] = []
         side_cands: List[Candidate] = []
-
+        debug_count = 0
         for c in candidates:
             if c.is_main_dish:
                 if req.max_main_kcal is not None and c.total_kcal is not None:

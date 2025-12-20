@@ -31,11 +31,13 @@ class RagIndex:
         self.metadata = metadata
 
     def _meta_path_for_school(school_id: str) -> str:
+        school_id = school_id.upper()
         base: Path = settings.METADATA_PATH
         return str(base.with_name(f"{base.stem}_{school_id}{base.suffix}"))
 
 
     def _index_path_for_school(school_id: str) -> str:
+        school_id = school_id.upper()
         base: Path = settings.FAISS_INDEX_PATH
         return str(base.with_name(f"{base.stem}_{school_id}{base.suffix}"))
 

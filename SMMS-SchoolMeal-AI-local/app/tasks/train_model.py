@@ -279,6 +279,7 @@ def train_ranking_model() -> None:
         return
 
     try:
+        school_id = school_id.upper()
         base: Path = settings.EMBEDDINGS_PATH
         emb_path = base.with_name(f"{base.stem}_{school_id}{base.suffix}")
         food_embeddings = np.load(emb_path)
