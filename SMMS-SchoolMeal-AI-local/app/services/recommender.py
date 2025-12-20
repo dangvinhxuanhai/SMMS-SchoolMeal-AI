@@ -118,8 +118,15 @@ class MenuRecommender:
 
     def recommend(self, db: Session, req: RecommendRequest) -> RecommendResponse:
         # 0. Lấy index & graph cho đúng trường (có thể None nếu chưa build)
+        print("=== [RECOMMEND] START ===")
+        print("SchoolId:", req.school_id)
+        print("UserId:", req.user_id)
+
         rag_index = self._get_rag_for_school(req.school_id)
         graph = self._get_graph_for_school(req.school_id)
+
+        print("RAG loaded:", rag_index is not None)
+        print("Graph loaded:", graph is not None)
 
         # Nếu thiếu 1 trong 2 -> trả về rỗng + message, không crash
         if rag_index is None or graph is None:
@@ -137,11 +144,25 @@ class MenuRecommender:
             req.max_main_kcal,
             req.max_side_kcal
         )
+
+        print("Query text:", query_text)
+
         candidates = rag_index.search_candidates(query_text, k=200)
+        print("FAISS candidates count:", len(candidates))
+
+        if candidates:
+            c0 = candidates[0]
+            print("Sample candidate:",
+                c0.food_id, c0.food_name,
+                "faiss=", c0.faiss_score,
+                "kcal=", c0.total_kcal,
+                "is_main=", c0.is_main_dish)
 
         # 2. tách main/side + filter kcal
         main_cands, side_cands = self._filter_candidates(req, candidates)
 
+        print("Main candidates after filter:", len(main_cands))
+        print("Side candidates after filter:", len(side_cands))
         # 3. tính score (FAISS + graph + ML)
         scored_main = self._score_candidates(req, graph, main_cands, is_main=True)
         scored_side = self._score_candidates(req, graph, side_cands, is_main=False)
@@ -154,7 +175,9 @@ class MenuRecommender:
         #    ⚠ trước đây anh đang lỡ truyền query_text vào RequestJson, sửa lại thành req.json()
         request_json_str = req.json()
         # session_id = self._log_session_and_results(db, req.user_id, request_json_str, scored_main, scored_side)
-
+        print("Top main returned:", len(scored_main))
+        print("Top side returned:", len(scored_side))
+        print("=== [RECOMMEND] END ===")
         # 6. build response
         return RecommendResponse(
             # session_id=session_id,
@@ -201,6 +224,12 @@ class MenuRecommender:
                     if c.total_kcal > req.max_side_kcal:
                         continue
                 side_cands.append(c)
+            if debug_count < 3:
+                print("---- Candidate ----")
+                print("FoodId:", c.food_id, c.food_name)
+                print("FAISS:", c.faiss_score)
+                print("Total kcal:", c.total_kcal)
+                debug_count += 1
 
         return main_cands, side_cands
 
@@ -252,6 +281,9 @@ class MenuRecommender:
                 # nếu bạn có sẵn allergen_ids trong Candidate thì giữ lại, không cũng được
                 "final_score": 0.0,
             })
+            if len(scored) < 3:
+                print("Graph score:", g_score)
+                print("Allergen penalty:", allergen_penalty)
 
         # ML scoring (nếu chưa có model thì trả 0.5 hết)
         ml_scores = self.ml_ranker.score_batch(feature_list)
@@ -265,15 +297,19 @@ class MenuRecommender:
                 0.2 * scored[i]["ml_score"]
             )
 
-            penalty = scored[i]["allergen_penalty"]  # ∈ [0,1]
-
-            # 0 <= penalty <= 1 -> multiplier từ 1.0 -> 0.3 (hoặc chỉnh hệ số 0.7 tuỳ bạn)
-            allergen_multiplier = 1.0 - 0.7 * penalty
-            if allergen_multiplier < 0.0:
-                allergen_multiplier = 0.0
+            penalty = scored[i]["allergen_penalty"]
+            allergen_multiplier = max(0.0, 1.0 - 0.7 * penalty)
 
             scored[i]["final_score"] = base_score * allergen_multiplier
 
+            if i < 3:
+                print("---- SCORE BREAKDOWN ----")
+                print("FoodId:", scored[i]["food_id"])
+                print("FAISS:", scored[i]["faiss_score"])
+                print("Graph:", scored[i]["graph_score"])
+                print("ML:", scored[i]["ml_score"])
+                print("Penalty:", penalty)
+                print("Final:", scored[i]["final_score"])
         return scored
 
 
