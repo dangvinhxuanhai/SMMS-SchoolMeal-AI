@@ -9,6 +9,7 @@ settings = get_settings()
 
 def _graph_path_for_school(school_id: str) -> str:
     # Trùng với build_graph.py
+    school_id = school_id.upper()
     return os.path.join(settings.DATA_DIR, f"ingredient_graph_{school_id}.gpickle")
 
 class IngredientGraph:
